@@ -6,6 +6,7 @@ import static com.juansenen.lepreroute.database.Constans.DATABASE_NAME;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.juansenen.lepreroute.ModifyActivity;
 import com.juansenen.lepreroute.R;
 import com.juansenen.lepreroute.database.AppDataBase;
 import com.juansenen.lepreroute.domain.Route;
@@ -89,13 +91,14 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
             txtDate = view.findViewById(R.id.rcview_date);
             checkIs = view.findViewById(R.id.rcview_checkbox);
 
-            //Boton con imagen de añadir ruta Establecemos click listener y cogemos posicion
-            //en el recycler para saber que coche es
+            //Boton con imagen de modificar ruta Establecemos click listener y cogemos posicion
+            //en el recycler para saber que ruta es y modificar
             imgModRoute = view.findViewById(R.id.but_modi_route);
+            imgModRoute.setOnClickListener(view1 -> modRoute(getAdapterPosition()));
 
 
             //Boton con imagen para eliminar ruta. Establecemos clisk listener y cogemos posicion
-            //en el recycler para saber que coche es
+            //en el recycler para saber que ruta es y eliminar
             imgDelRoute = view.findViewById(R.id.but_delete_route);
             imgDelRoute.setOnClickListener(view1 -> deleteRoute(getAdapterPosition()));
 
@@ -106,9 +109,9 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
             //Creamos dialogo de alerta con opciones
             AlertDialog.Builder builder = new AlertDialog.Builder(contex);
-            builder.setMessage("Desea eliminar")
-                    .setTitle("ELIMINAR")
-                    .setPositiveButton("Si", (dialog, id) -> {
+            builder.setMessage(R.string.WantDelete)
+                    .setTitle(R.string.Delete)
+                    .setPositiveButton(R.string.Yes, (dialog, id) -> {
                         //Al pulsar en OK eliminamos vehiculo de la base de datos
                         final AppDataBase db = Room.databaseBuilder(contex, AppDataBase.class, DATABASE_NAME)
                                 .allowMainThreadQueries().build();
@@ -119,9 +122,17 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
                         //Notificamos el cambio
                         notifyItemRemoved(position);
                     })
-                    .setNegativeButton(("Cancelar"), (dialog, id) -> dialog.dismiss());
+                    .setNegativeButton((contex.getString(R.string.Cancel)), (dialog, id) -> dialog.dismiss());
             AlertDialog dialog = builder.create();
             dialog.show();
+        }
+        //Metodo modificar ruta
+        public void modRoute(int position){
+            Route route = routeList.get(position);
+            //Enviamos a la Activity actualizar y le pasamos el codigo
+            Intent intent = new Intent(contex, ModifyActivity.class);
+            intent.putExtra("code", route.getCode());
+            contex.startActivity(intent);
         }
     }
 }

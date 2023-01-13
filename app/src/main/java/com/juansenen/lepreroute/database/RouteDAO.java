@@ -15,7 +15,9 @@ public interface RouteDAO {
         //Obtener todos
         @Query("SELECT * FROM rutas")
         List<Route> getAll();
-
+        //Obtener por codigo
+        @Query("SELECT * FROM rutas WHERE code = :coderoute")
+        Route getByCode(String coderoute);
         //Añadir
         @Insert
         void insert(Route routes);
