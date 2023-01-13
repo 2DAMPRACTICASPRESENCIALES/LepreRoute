@@ -42,7 +42,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     @Override
     public void onBindViewHolder(RouteHolder holder, int position) {
         holder.txtType.setText(routeList.get(position).getType());
-        holder.txtRating.setText(routeList.get(position).getRaiting());
+        holder.txtRating.setText(String.valueOf(routeList.get(position).getRaiting()));
         holder.txtDate.setText(routeList.get(position).getDate());
         holder.checkIs.setChecked(routeList.get(position).isCompleted());
 
