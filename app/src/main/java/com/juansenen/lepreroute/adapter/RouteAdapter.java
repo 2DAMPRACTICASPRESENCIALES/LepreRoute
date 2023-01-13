@@ -2,6 +2,9 @@ package com.juansenen.lepreroute.adapter;
 
 //Adapter del RecyclerView de la MainActivity
 
+import static com.juansenen.lepreroute.database.Constans.DATABASE_NAME;
+
+import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -14,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.juansenen.lepreroute.R;
+import com.juansenen.lepreroute.database.AppDataBase;
 import com.juansenen.lepreroute.domain.Route;
 
 import java.util.List;
@@ -42,7 +47,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     @Override
     public void onBindViewHolder(RouteHolder holder, int position) {
         holder.txtType.setText(routeList.get(position).getType());
-        holder.txtRating.setText(routeList.get(position).getRaiting());
+        holder.txtRating.setText(String.valueOf(routeList.get(position).getRaiting()));
         holder.txtDate.setText(routeList.get(position).getDate());
         holder.checkIs.setChecked(routeList.get(position).isCompleted());
 
@@ -62,7 +67,6 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     public class RouteHolder extends RecyclerView.ViewHolder {
 
         public ImageView imgRoute;
-        public ImageButton imgAddRoute;
         public ImageButton imgModRoute;
         public ImageButton imgDelRoute;
         public TextView txtType;
@@ -78,7 +82,6 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
             //Recuperamos los elementos del layout
             imgRoute = view.findViewById(R.id.imageView);
-            imgAddRoute = view.findViewById(R.id.but_add_route);
             imgDelRoute = view.findViewById(R.id.but_delete_route);
             imgModRoute = view.findViewById(R.id.but_modi_route);
             txtType = view.findViewById(R.id.rcview_txttype);
@@ -86,7 +89,39 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
             txtDate = view.findViewById(R.id.rcview_date);
             checkIs = view.findViewById(R.id.rcview_checkbox);
 
+            //Boton con imagen de añadir ruta Establecemos click listener y cogemos posicion
+            //en el recycler para saber que coche es
+            imgModRoute = view.findViewById(R.id.but_modi_route);
 
+
+            //Boton con imagen para eliminar ruta. Establecemos clisk listener y cogemos posicion
+            //en el recycler para saber que coche es
+            imgDelRoute = view.findViewById(R.id.but_delete_route);
+            imgDelRoute.setOnClickListener(view1 -> deleteRoute(getAdapterPosition()));
+
+
+        }
+        //Metodo para borrar vehiculo
+        public void deleteRoute(int position) {
+
+            //Creamos dialogo de alerta con opciones
+            AlertDialog.Builder builder = new AlertDialog.Builder(contex);
+            builder.setMessage("Desea eliminar")
+                    .setTitle("ELIMINAR")
+                    .setPositiveButton("Si", (dialog, id) -> {
+                        //Al pulsar en OK eliminamos vehiculo de la base de datos
+                        final AppDataBase db = Room.databaseBuilder(contex, AppDataBase.class, DATABASE_NAME)
+                                .allowMainThreadQueries().build();
+                        Route car = routeList.get(position);
+                        db.routeDAO().delete(car);
+
+                        routeList.remove(position);
+                        //Notificamos el cambio
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton(("Cancelar"), (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 }
