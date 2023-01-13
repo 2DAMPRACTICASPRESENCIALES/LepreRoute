@@ -62,7 +62,6 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
     public class RouteHolder extends RecyclerView.ViewHolder {
 
         public ImageView imgRoute;
-        public ImageButton imgAddRoute;
         public ImageButton imgModRoute;
         public ImageButton imgDelRoute;
         public TextView txtType;
@@ -78,13 +77,20 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
 
             //Recuperamos los elementos del layout
             imgRoute = view.findViewById(R.id.imageView);
-            imgAddRoute = view.findViewById(R.id.but_add_route);
             imgDelRoute = view.findViewById(R.id.but_delete_route);
             imgModRoute = view.findViewById(R.id.but_modi_route);
             txtType = view.findViewById(R.id.rcview_txttype);
             txtRating = view.findViewById(R.id.rcview_rating);
             txtDate = view.findViewById(R.id.rcview_date);
             checkIs = view.findViewById(R.id.rcview_checkbox);
+
+            //Boton con imagen de añadir ruta Establecemos click listener y cogemos posicion
+            //en el recycler para saber que coche es
+            imgModRoute = view.findViewById(R.id.but_modi_route);
+
+            imgDelRoute = view.findViewById(R.id.but_delete_route);
+
+
 
 
         }
