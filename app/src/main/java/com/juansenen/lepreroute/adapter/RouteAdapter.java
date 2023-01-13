@@ -2,6 +2,9 @@ package com.juansenen.lepreroute.adapter;
 
 //Adapter del RecyclerView de la MainActivity
 
+import static com.juansenen.lepreroute.database.Constans.DATABASE_NAME;
+
+import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -14,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.juansenen.lepreroute.R;
+import com.juansenen.lepreroute.database.AppDataBase;
 import com.juansenen.lepreroute.domain.Route;
 
 import java.util.List;
@@ -88,11 +93,35 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.RouteHolder>
             //en el recycler para saber que coche es
             imgModRoute = view.findViewById(R.id.but_modi_route);
 
+
+            //Boton con imagen para eliminar ruta. Establecemos clisk listener y cogemos posicion
+            //en el recycler para saber que coche es
             imgDelRoute = view.findViewById(R.id.but_delete_route);
+            imgDelRoute.setOnClickListener(view1 -> deleteRoute(getAdapterPosition()));
 
 
+        }
+        //Metodo para borrar vehiculo
+        public void deleteRoute(int position) {
 
+            //Creamos dialogo de alerta con opciones
+            AlertDialog.Builder builder = new AlertDialog.Builder(contex);
+            builder.setMessage("Desea eliminar")
+                    .setTitle("ELIMINAR")
+                    .setPositiveButton("Si", (dialog, id) -> {
+                        //Al pulsar en OK eliminamos vehiculo de la base de datos
+                        final AppDataBase db = Room.databaseBuilder(contex, AppDataBase.class, DATABASE_NAME)
+                                .allowMainThreadQueries().build();
+                        Route car = routeList.get(position);
+                        db.routeDAO().delete(car);
 
+                        routeList.remove(position);
+                        //Notificamos el cambio
+                        notifyItemRemoved(position);
+                    })
+                    .setNegativeButton(("Cancelar"), (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
     }
 }
