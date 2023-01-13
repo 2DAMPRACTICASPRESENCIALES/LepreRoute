@@ -68,31 +68,36 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/latitude">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtxt_longitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/latitude"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/latitude"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/longitude">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtxt_latitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/longitude"/>
 
         <CheckBox
             android:id="@+id/checkBox_addroute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/Done" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
 
         <Button
             android:id="@+id/button"

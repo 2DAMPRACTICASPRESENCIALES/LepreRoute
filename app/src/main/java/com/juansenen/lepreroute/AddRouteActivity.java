@@ -53,8 +53,8 @@ public class AddRouteActivity extends AppCompatActivity {
         //Recuperamos los elementos
         EditText ed_tipo = findViewById(R.id.edtxt_type);
         EditText ed_valoracion= findViewById(R.id.edtxt_rating);
-        EditText ed_longitud = findViewById(R.id.edtxt_longitude);
-        EditText ed_latitud = findViewById(R.id.edtxt_latitude);
+  //      EditText ed_longitud = findViewById(R.id.edtxt_longitude);
+ //       EditText ed_latitud = findViewById(R.id.edtxt_latitude);
         EditText ed_code = findViewById(R.id.edtxt_code);
         CheckBox chkDone = findViewById(R.id.checkBox_addroute);
         EditText ed_fecha = findViewById(R.id.edtxt_date);
@@ -62,15 +62,15 @@ public class AddRouteActivity extends AppCompatActivity {
         //Recuperamos los datos de los campos
         String tipo = ed_tipo.getText().toString();
         int valora = Integer.parseInt(ed_valoracion.getText().toString());
-        float longi = Float.parseFloat(ed_longitud.getText().toString());
-        float lati = Float.parseFloat(ed_latitud.getText().toString());
+ //       float longi = Float.parseFloat(ed_longitud.getText().toString());
+ //       float lati = Float.parseFloat(ed_latitud.getText().toString());
         String code = ed_code.getText().toString();
         String fecha = ed_fecha.getText().toString();
         boolean done = chkDone.isChecked();
         String imagen = null;
 
         //Creamos el objeto con los datos
-        Route route = new Route(code,lati,longi,tipo,valora,fecha,done,imagen);
+        Route route = new Route(code,0.1f,0.1f,tipo,valora,fecha,done,imagen);
 
         //Insertamos los datos en la BD
         final AppDataBase db = Room.databaseBuilder(this, AppDataBase.class, DATABASE_NAME)
@@ -84,8 +84,8 @@ public class AddRouteActivity extends AppCompatActivity {
         ed_valoracion.setText("");
         ed_fecha.setText("");
         ed_code.setText("");
-        ed_latitud.setText("");
-        ed_longitud.setText("");
+ //       ed_latitud.setText("");
+ //       ed_longitud.setText("");
         chkDone.setChecked(false);
 
         //Levamos el foco al campo code
