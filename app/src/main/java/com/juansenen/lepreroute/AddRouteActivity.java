@@ -67,7 +67,7 @@ public class AddRouteActivity extends AppCompatActivity {
         String code = ed_code.getText().toString();
         String fecha = ed_fecha.getText().toString();
         boolean done = chkDone.isChecked();
-        String imagen = "";
+        String imagen = null;
 
         //Creamos el objeto con los datos
         Route route = new Route(code,lati,longi,tipo,valora,fecha,done,imagen);
