@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LepreRoute</string>
+    <string name="route">RUTA</string>
+    <string name="type">TIPO</string>
+    <string name="Rating">VALORACION</string>
+    <string name="Raiting">VALORACION</string>
+    <string name="Date">FECHA</string>
+    <string name="Done">COMPLETADA</string>
 </resources>

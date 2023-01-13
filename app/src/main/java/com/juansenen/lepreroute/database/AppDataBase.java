@@ -12,5 +12,5 @@ import com.juansenen.lepreroute.domain.Route;
 public abstract class AppDataBase extends RoomDatabase {
 
     //Un DAO por cada clase
-    public abstract Route carsDAO();
+    public abstract RouteDAO routeDAO();
 }

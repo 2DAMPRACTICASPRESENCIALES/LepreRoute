@@ -27,6 +27,10 @@ public class Route {
     @ColumnInfo
     public String img = "";
 
+    public Route (){
+
+    }
+
     public Route(@NonNull String code, float latitude, float longitude, String type, int raiting, String date, boolean isCompleted, String img) {
         this.code = code;
         this.latitude = latitude;

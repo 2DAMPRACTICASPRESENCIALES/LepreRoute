@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.juansenen.lepreroute'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.juansenen.lepreroute"
