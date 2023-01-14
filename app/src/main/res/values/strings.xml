@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">LepreRoute</string>
+    <string name="route">RUTA</string>
+    <string name="type">TIPO</string>
+    <string name="Rating">VALORACION</string>
+    <string name="Raiting">VALORACION</string>
+    <string name="Date">FECHA</string>
+    <string name="Done">COMPLETADA</string>
+    <string name="title_activity_add_route">AddRouteActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="latitude">latitud</string>
+    <string name="longitude">longitud</string>
+    <string name="Add">AÑADIR</string>
+    <string name="Code">CODIGO</string>
+    <string name="Added">Añadido</string>
+    <string name="WantDelete">Desea eliminar</string>
+    <string name="Delete">ELIMINAR</string>
+    <string name="Yes">Si</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="Updated">Actualizado</string>
+    <string name="Update">Modificar</string>
+    <string name="wantupdate">Desea modifciar</string>
 </resources>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRouteActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mod_code_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/type">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mod_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mod_type_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Code">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mod_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mod_rating_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Raiting">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mod_rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mod_date_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Date">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mod_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mod_longitude_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/longitude"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/mod_latitude_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/latitude"/>
+
+        <CheckBox
+            android:id="@+id/mod_checkBox_addroute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Done" />
+
+        <Button
+            android:id="@+id/buttonMod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="butModdRoute"
+            android:text="Modificar" />
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapModify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mapbox_cameraTargetLat="40.48205"
+            app:mapbox_cameraTargetLng="-3.35996"
+            app:mapbox_cameraZoom="12">
+
+        </com.mapbox.maps.MapView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
