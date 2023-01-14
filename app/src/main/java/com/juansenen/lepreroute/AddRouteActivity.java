@@ -36,8 +36,6 @@ public class AddRouteActivity extends AppCompatActivity {
     private MapView mapView;
     private Point point;
     private PointAnnotationManager pointAnnotationManager;
-    private double latitudeMap;
-    private double longitudeMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

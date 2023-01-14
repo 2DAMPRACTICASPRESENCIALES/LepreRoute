@@ -8,6 +8,7 @@ import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,15 @@ import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
 import com.juansenen.lepreroute.database.AppDataBase;
 import com.juansenen.lepreroute.domain.Route;
+import com.mapbox.geojson.Point;
+import com.mapbox.maps.CameraOptions;
+import com.mapbox.maps.MapView;
+import com.mapbox.maps.plugin.annotation.AnnotationConfig;
+import com.mapbox.maps.plugin.annotation.AnnotationPlugin;
+import com.mapbox.maps.plugin.annotation.AnnotationPluginImplKt;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManager;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationManagerKt;
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions;
 
 public class ModifyActivity extends AppCompatActivity {
 
@@ -27,10 +37,14 @@ public class ModifyActivity extends AppCompatActivity {
     private EditText txtType;
     private EditText txtRating;
     private EditText txtDate;
-    private EditText txtLongitude;
-    private EditText txtLatitude;
     private CheckBox checkDone;
     private Route route;
+    private MapView mapView;
+    private Point point;
+    private PointAnnotationManager pointAnnotationManager;
+    private double longitudePoint;
+    private double latitudePoint;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +61,44 @@ public class ModifyActivity extends AppCompatActivity {
                 .allowMainThreadQueries().build();
         route = db.routeDAO().getByCode(coderoute);
 
+        //Recuperamos el mapa
+        mapView = findViewById(R.id.mapModify);
+
         //Obtenemos los elementos del layout de la Activity
         txtCode = findViewById(R.id.mod_code);
         txtType = findViewById(R.id.mod_type);
         txtRating = findViewById(R.id.mod_rating);
         txtDate = findViewById(R.id.mod_date);
-        txtLatitude = findViewById(R.id.mod_latitude);
-        txtLongitude = findViewById(R.id.mod_longitude);
         checkDone = findViewById(R.id.mod_checkBox_addroute);
+
 
         //Colocamos los datos de la base en los campos
         txtCode.setText(coderoute);
         txtRating.setText(String.valueOf(route.getRaiting()));
         txtType.setText(route.getType());
         txtDate.setText(route.getDate());
-        txtLatitude.setText(String.valueOf(route.getLatitude()));
-        txtLongitude.setText(String.valueOf(route.getLongitude()));
         checkDone.setChecked(route.isCompleted());
+
+        latitudePoint = route.getLatitude();
+        longitudePoint = route.getLongitude();
+
+        //Metodos para colocar el marcador en el mapa segun los campos
+        initializePointManager();
+        addMarker(latitudePoint,longitudePoint);
+
+    }
+    private void initializePointManager() {
+        AnnotationPlugin annotationPlugin = AnnotationPluginImplKt.getAnnotations(mapView);
+        AnnotationConfig annotationConfig = new AnnotationConfig();
+        pointAnnotationManager = PointAnnotationManagerKt.createPointAnnotationManager(annotationPlugin, annotationConfig);
+
+    }
+    //Añadimos marcador en la ultima posicion
+    private void addMarker(double latitude, double longitude) {
+        PointAnnotationOptions pointAnnotationOptions = new PointAnnotationOptions()
+                .withPoint(Point.fromLngLat(longitude, latitude))
+                .withIconImage(BitmapFactory.decodeResource(getResources(), R.mipmap.red_map_market_foreground));
+        pointAnnotationManager.create(pointAnnotationOptions);
     }
 
     //Opciones de menu en la action bar
@@ -85,16 +120,16 @@ public class ModifyActivity extends AppCompatActivity {
         return false;
     }
 
-    //Metodo al pulsar boton actualizar coche
+    //Metodo al pulsar boton actualizar ruta
     public void butModdRoute(View view){
         route.setCode(txtCode.getText().toString());
         route.setType(txtType.getText().toString());
-        route.setLatitude(Double.parseDouble(txtLatitude.getText().toString()));
-        route.setLongitude(Double.parseDouble(txtLongitude.getText().toString()));
         route.setDate(txtDate.getText().toString());
         route.setCompleted(checkDone.isChecked());
+        route.setLatitude(latitudePoint);
+        route.setLongitude(longitudePoint);
 
-        //Dialogo asegurar modiicación
+        //Dialogo asegurar modificación
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.wantupdate)
                 .setTitle(R.string.Update)
