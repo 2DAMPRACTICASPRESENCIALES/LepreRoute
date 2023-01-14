@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LepreRoute</string>
+    <string name="route">Route</string>
+    <string name="type">Type</string>
+    <string name="Rating">Raiting</string>
+    <string name="Raiting">Raiting</string>
+    <string name="Date">Date</string>
+    <string name="Done">Done</string>
+    <string name="latitude">latitude</string>
+    <string name="longitude">longitude</string>
+    <string name="Add">Add</string>
+    <string name="Code">Code</string>
+    <string name="Added">Added</string>
+    <string name="WantDelete">Do you want to delete</string>
+    <string name="Delete">Delete</string>
+    <string name="Yes">Yes</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Updated">Updated</string>
+    <string name="Update">Modify</string>
+    <string name="wantupdate">Do you want to modify</string>
+</resources>
