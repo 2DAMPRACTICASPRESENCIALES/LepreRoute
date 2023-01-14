@@ -13,6 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/code_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -51,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/date_rating"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -63,30 +65,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/longitude"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/latitude">
+            android:hint="@string/latitude" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtxt_longitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/latitude"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/longitude">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtxt_latitude"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/longitude" />
 
         <CheckBox
             android:id="@+id/checkBox_addroute"
@@ -94,12 +86,32 @@
             android:layout_height="wrap_content"
             android:text="@string/Done" />
 
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="butAddRoute"
             android:text="@string/Add" />
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mapbox_cameraTargetLat="40.48205"
+            app:mapbox_cameraTargetLng="-3.35996"
+            app:mapbox_cameraZoom="12">
+
+        </com.mapbox.maps.MapView>
 
     </LinearLayout>
 

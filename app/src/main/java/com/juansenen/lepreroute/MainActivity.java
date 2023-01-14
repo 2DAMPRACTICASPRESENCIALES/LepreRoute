@@ -76,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddRouteActivity.class);
             startActivity(intent);
             return true;
+        }else if (item.getItemId() == R.id.but_actionbar_mapa) {
+            Intent intent = new Intent(this, MapActivity.class);
+            startActivity(intent);
+            return true;
         }
         return false;
     }
