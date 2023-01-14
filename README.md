@@ -23,14 +23,14 @@ RecyclerView en el que se visionan las distintas actividades que ha realizado el
 Desde la misma card se puede modificar o eliminar la actividad.
 Desde la actionbar se puede añadir una nueva o ver un mapa general de todas las posiciones de las realizadas
 
-###Pantalla Añadir
+###Pantalla Añadir.
 
 Para la introducción de los datos y la posición en un mapa al pulsarla
 
-###Pantalla Modificar
+###Pantalla Modificar.
 Desde la que se pueden modificar los datos de la actividad.
 
-###Pantalla General Mapas
+###Pantalla General Mapas.
 Desde esta pantalla se pueden visualizar todas las localizaciones de las actividades registradas
 
 
