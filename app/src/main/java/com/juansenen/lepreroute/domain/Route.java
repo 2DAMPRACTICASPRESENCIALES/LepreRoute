@@ -13,9 +13,9 @@ public class Route {
     @NonNull
     public String code;
     @ColumnInfo
-    public float latitude;
+    public double latitude;
     @ColumnInfo
-    public float longitude;
+    public double longitude;
     @ColumnInfo
     public String type;
     @ColumnInfo
@@ -31,7 +31,7 @@ public class Route {
 
     }
 
-    public Route(@NonNull String code, float latitude, float longitude, String type, int raiting, String date, boolean isCompleted, String img) {
+    public Route(@NonNull String code, double latitude, double longitude, String type, int raiting, String date, boolean isCompleted, String img) {
         this.code = code;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -52,19 +52,19 @@ public class Route {
         this.code = code;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

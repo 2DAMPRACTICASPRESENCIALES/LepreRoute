@@ -89,8 +89,8 @@ public class ModifyActivity extends AppCompatActivity {
     public void butModdRoute(View view){
         route.setCode(txtCode.getText().toString());
         route.setType(txtType.getText().toString());
-        route.setLatitude(Float.parseFloat(txtLatitude.getText().toString()));
-        route.setLongitude(Float.parseFloat(txtLongitude.getText().toString()));
+        route.setLatitude(Double.parseDouble(txtLatitude.getText().toString()));
+        route.setLongitude(Double.parseDouble(txtLongitude.getText().toString()));
         route.setDate(txtDate.getText().toString());
         route.setCompleted(checkDone.isChecked());
 

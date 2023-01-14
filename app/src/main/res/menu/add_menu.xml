@@ -7,4 +7,9 @@
         android:icon="@android:drawable/ic_input_add"
         android:title="Añadir"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/but_actionbar_mapa"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="Mapa"
+        app:showAsAction="always" />
 </menu>
