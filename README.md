@@ -3,8 +3,9 @@
 
 ***
 
-Fernando Campos Segura
-Juan Senén García Saez
+Fernando Campos Segura :raising_hand:
+
+Juan Senén García Saez :raising_hand:
 
 ***
 
